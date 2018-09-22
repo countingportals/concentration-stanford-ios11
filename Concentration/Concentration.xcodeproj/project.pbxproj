@@ -97,11 +97,9 @@
 		D6B0FE5B2155D82300B89D67 /* Concentration */ = {
 			isa = PBXGroup;
 			children = (
-				D6B0FE5C2155D82300B89D67 /* AppDelegate.swift */,
+				D6B0FE8A2155E31B00B89D67 /* Supporting Files */,
 				D6B0FE5E2155D82400B89D67 /* ViewController.swift */,
 				D6B0FE602155D82400B89D67 /* Main.storyboard */,
-				D6B0FE632155D82500B89D67 /* Assets.xcassets */,
-				D6B0FE652155D82500B89D67 /* LaunchScreen.storyboard */,
 				D6B0FE682155D82500B89D67 /* Info.plist */,
 			);
 			path = Concentration;
@@ -123,6 +121,16 @@
 				D6B0FE7E2155D82500B89D67 /* Info.plist */,
 			);
 			path = ConcentrationUITests;
+			sourceTree = "<group>";
+		};
+		D6B0FE8A2155E31B00B89D67 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D6B0FE5C2155D82300B89D67 /* AppDelegate.swift */,
+				D6B0FE632155D82500B89D67 /* Assets.xcassets */,
+				D6B0FE652155D82500B89D67 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,7 +441,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2XNW9TMMQF;
 				INFOPLIST_FILE = Concentration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +460,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2XNW9TMMQF;
 				INFOPLIST_FILE = Concentration/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
