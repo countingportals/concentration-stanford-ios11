@@ -52,14 +52,31 @@ class ViewController: UIViewController {
         }
     }
     
-    private var emojiChoices = ["👾", "🤖", "👽", "🧟‍♀️", "🧙🏾‍♂️", "🧝🏻‍♀️", "🧛🏻‍♂️", "🧜🏽‍♀️", "🧞‍♂️"]
+    private let themes = [
+        "geek": ["👾", "🤖", "👽", "🧟‍♀️", "🧙🏾‍♂️", "🧝🏻‍♀️", "🧛🏻‍♂️", "🧜🏽‍♀️", "🧞‍♂️"],
+        "halloween": ["🎃", "🐱", "🧛🏻‍♂️", "🧟‍♀️", "🍬", "🧙🏻‍♀️", "🦇", "🕷", "🕸"],
+        "hp": ["⚡️", "🧙🏾‍♂️", "🐍", "🦌", "🏰", "🏆", "⏳", "🗝", "🌳"],
+        "space": ["🌗", "🌙", "🌞", "💫", "☄️", "🌎", "🚀", "🛸", "🛰"],
+        "city": ["🕍", "🏭", "🕌", "⛩", "⛪️", "🏢", "🏨", "🏦", "🏠"],
+        "flags": ["🇷🇪", "🇸🇨", "🇵🇷", "🇨🇦", "🇺🇸", "🇱🇨", "🇲🇴", "🇲🇰", "🇩🇲"]
+    ]
+    
     private var emoji = [Int:String]()
     
+    private lazy var selectedTheme = themes.randomElement()!.value
+    
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
+        if emoji[card.identifier] == nil, selectedTheme.count > 0 {
+            emoji[card.identifier] = selectedTheme.remove(at: selectedTheme.count.arc4random)
         }
         return emoji[card.identifier] ?? "?"
+    }
+    
+    @IBAction private func newGame(_ sender: UIButton) {
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        flipCount = 0
+        selectedTheme = themes.randomElement()!.value
+        updateViewFromModel()
     }
     
 }

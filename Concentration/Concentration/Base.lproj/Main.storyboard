@@ -18,8 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fe5-6Z-Ei7">
+                                <rect key="frame" x="125.66666666666666" y="730" width="123.66666666666666" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0s5-r1-Bkx">
+                                <rect key="frame" x="123" y="44" width="129" height="36"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="New Game">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qlg-cG-yca"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ih4-Nk-A2s">
-                                <rect key="frame" x="16" y="44" width="343" height="232"/>
+                                <rect key="frame" x="16" y="105" width="343" height="232"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ppf-7F-Juf">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="72"/>
@@ -134,21 +152,19 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fe5-6Z-Ei7">
-                                <rect key="frame" x="125.66666666666666" y="730" width="123.66666666666666" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Ih4-Nk-A2s" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0s5-r1-Bkx" secondAttribute="bottom" constant="25" id="4tb-sP-LEO"/>
+                            <constraint firstItem="Ih4-Nk-A2s" firstAttribute="top" secondItem="0s5-r1-Bkx" secondAttribute="bottom" constant="25" id="Kny-or-13O"/>
+                            <constraint firstItem="0s5-r1-Bkx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="123" id="M4h-C4-KYn"/>
+                            <constraint firstItem="0s5-r1-Bkx" firstAttribute="centerX" secondItem="Ih4-Nk-A2s" secondAttribute="centerX" id="Q9o-9X-kuo"/>
                             <constraint firstItem="Fe5-6Z-Ei7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UvT-NP-Sn1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Fe5-6Z-Ei7" secondAttribute="bottom" id="VDj-tV-do7"/>
                             <constraint firstItem="Ih4-Nk-A2s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="VbJ-mb-iDW"/>
+                            <constraint firstItem="0s5-r1-Bkx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Wa9-zl-pHi"/>
                             <constraint firstItem="Fe5-6Z-Ei7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NR2-Os-SG1" secondAttribute="bottom" constant="8" id="YnE-Yd-22G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ih4-Nk-A2s" secondAttribute="trailing" constant="16" id="h69-W8-fEe"/>
-                            <constraint firstItem="Ih4-Nk-A2s" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zQR-zX-irC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
