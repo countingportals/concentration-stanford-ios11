@@ -81,7 +81,6 @@ class Concentration {
             let card = Card()
             cards += [card, card]
         }
-        
         cards.shuffle()
         currentScore = 0
         flipCount = 0
