@@ -3,7 +3,7 @@
 //  Concentration
 //
 //  Created by Ashley Raines on 9/23/18.
-//  Copyright © 2018 Ashley Andersen. All rights reserved.
+//  Copyright © 2018 Ashley Raines. All rights reserved.
 //
 
 import Foundation
@@ -14,9 +14,9 @@ struct Card {
     var isMatched = false
     var identifier: Int
     
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
     
-    static func getUniqueIdentifier() -> Int {
+    private static func getUniqueIdentifier() -> Int {
         identifierFactory += 1
         return identifierFactory
     }
