@@ -10,8 +10,17 @@ import Foundation
 
 struct Card {
     
-    var isFaceUp = false
+    var isFaceUp = false {
+        didSet {
+            // if we're flipping the card back over, and this card hasn't been seen before
+            if oldValue, !hasBeenSeen {
+                // mark this card as seen
+                hasBeenSeen = true
+            }
+        }
+    }
     var isMatched = false
+    var hasBeenSeen = false
     var identifier: Int
     
     private static var identifierFactory = 0

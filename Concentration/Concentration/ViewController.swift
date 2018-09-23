@@ -24,7 +24,15 @@ class ViewController: UIViewController {
         }
     }
     
+    private(set) var currentGameScore = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(currentGameScore)"
+        }
+    }
+    
     @IBOutlet private weak var flipCountLabel: UILabel!
+    
+    @IBOutlet private weak var scoreLabel: UILabel!
     
     @IBOutlet private var cardButtons: [UIButton]!
     
@@ -50,6 +58,7 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0) : #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
             }
         }
+        currentGameScore = game.currentScore
     }
     
     private let themes = [
@@ -75,6 +84,7 @@ class ViewController: UIViewController {
     @IBAction private func newGame(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         flipCount = 0
+        currentGameScore = 0
         selectedTheme = themes.randomElement()!.value
         updateViewFromModel()
     }

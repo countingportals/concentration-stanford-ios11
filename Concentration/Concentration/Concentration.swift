@@ -13,6 +13,8 @@ class Concentration {
     // makes array a constant for outside this class
     private(set) var cards = [Card]()
     
+    private(set) var currentScore: Int
+    
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
             var foundIndex: Int?
@@ -43,10 +45,18 @@ class Concentration {
             // two cards are face up and either match or do not
             // one card is face up
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
-                // check if cards match assuming the card is not the same one last clicked
+                // check if cards match assuming the card is not the same one last tapped
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    // gain 2 points for a match
+                    adjustScore(by: 2)
+                } else {
+                    // lose 1 point for each card that has been flipped over before
+                    var penalty = cards[matchIndex].hasBeenSeen ? 1 : 0;
+                    penalty += cards[index].hasBeenSeen ? 1 : 0;
+                    // this card has been seen and at least 2 cards are faceup
+                    adjustScore(by: -penalty)
                 }
                 cards[index].isFaceUp = true
             } else {
@@ -54,6 +64,10 @@ class Concentration {
             }
             
         }
+    }
+    
+    private func adjustScore(by amount: Int) {
+        currentScore += amount
     }
     
     init(numberOfPairsOfCards: Int) {
@@ -66,5 +80,6 @@ class Concentration {
         }
         
         cards.shuffle()
+        currentScore = 0
     }
 }
