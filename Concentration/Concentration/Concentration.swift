@@ -13,6 +13,8 @@ class Concentration {
     // makes array a constant for outside this class
     private(set) var cards = [Card]()
     
+    private(set) var flipCount: Int
+    
     private(set) var currentScore: Int
     
     private var indexOfOneAndOnlyFaceUpCard: Int? {
@@ -39,6 +41,7 @@ class Concentration {
     func chooseCard(at index: Int) {
         // crash when improperly used
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
+        flipCount += 1
         
         if !cards[index].isMatched {
             // no cards are face up
@@ -81,5 +84,6 @@ class Concentration {
         
         cards.shuffle()
         currentScore = 0
+        flipCount = 0
     }
 }

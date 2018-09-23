@@ -18,9 +18,9 @@ class ViewController: UIViewController {
     }
     
     // only private for setting
-    private(set) var flipCount = 0 {
+    private(set) var currentGameFlipCount = 0 {
         didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
+            flipCountLabel.text = "Flips: \(currentGameFlipCount)"
         }
     }
     
@@ -37,7 +37,6 @@ class ViewController: UIViewController {
     @IBOutlet private var cardButtons: [UIButton]!
     
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -59,6 +58,7 @@ class ViewController: UIViewController {
             }
         }
         currentGameScore = game.currentScore
+        currentGameFlipCount = game.flipCount
     }
     
     private let themes = [
@@ -83,8 +83,8 @@ class ViewController: UIViewController {
     
     @IBAction private func newGame(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
-        flipCount = 0
-        currentGameScore = 0
+        currentGameFlipCount = game.flipCount
+        currentGameScore = game.currentScore
         selectedTheme = themes.randomElement()!.value
         updateViewFromModel()
     }
