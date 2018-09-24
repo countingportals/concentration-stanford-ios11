@@ -17,6 +17,8 @@ class Concentration {
     
     private(set) var currentScore: Int
     
+    private(set) var lastTimeTouched: Date?
+    
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
             var foundIndex: Int?
@@ -53,7 +55,7 @@ class Concentration {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                     // gain 2 points for a match
-                    adjustScore(by: 2)
+                    adjustScore(by: 2, considerTime: true)
                 } else {
                     // lose 1 point for each card that has been flipped over before
                     var penalty = cards[matchIndex].hasBeenSeen ? 1 : 0;
@@ -65,12 +67,18 @@ class Concentration {
             } else {
                 indexOfOneAndOnlyFaceUpCard = index
             }
-            
         }
+        lastTimeTouched = Date()
     }
     
-    private func adjustScore(by amount: Int) {
+    private func adjustScore(by amount: Int, considerTime: Bool = false) {
         currentScore += amount
+        
+        // lose points for every 2 seconds between last match and this
+        if considerTime {
+            currentScore += Int(lastTimeTouched!.timeIntervalSinceNow/2)
+        }
+        
     }
     
     init(numberOfPairsOfCards: Int) {
