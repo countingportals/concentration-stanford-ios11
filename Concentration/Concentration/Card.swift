@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct Card {
+struct Card: Hashable {
+    
+    var HashValue: Int {
+        return identifier
+    }
+    
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
     
     var isFaceUp = false {
         didSet {
@@ -21,7 +29,7 @@ struct Card {
     }
     var isMatched = false
     var hasBeenSeen = false
-    var identifier: Int
+    private let identifier: Int
     
     private static var identifierFactory = 0
     

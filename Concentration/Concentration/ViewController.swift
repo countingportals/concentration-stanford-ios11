@@ -17,10 +17,19 @@ class ViewController: UIViewController {
         return (cardButtons.count+1) / 2
     }
     
+    private func updateFlipCountLabel() {
+        let attributes: [NSAttributedString.Key:Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        ]
+        let attributedString = NSAttributedString(string: "Flips: \(currentGameFlipCount)", attributes: attributes)
+        flipCountLabel.attributedText = attributedString
+    }
+    
     // only private for setting
     private(set) var currentGameFlipCount = 0 {
         didSet {
-            flipCountLabel.text = "Flips: \(currentGameFlipCount)"
+            updateFlipCountLabel()
         }
     }
     
@@ -30,7 +39,11 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel! {
+        didSet {
+            updateFlipCountLabel()
+        }
+    }
     
     @IBOutlet private weak var scoreLabel: UILabel!
     
@@ -78,7 +91,7 @@ class ViewController: UIViewController {
         "flags": (emojis: ["🇷🇪", "🇸🇨", "🇵🇷", "🇨🇦", "🇺🇸", "🇱🇨", "🇲🇴", "🇲🇰", "🇩🇲"], background: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), cardColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
     ]
     
-    private var emoji = [Int:String]()
+    private var emoji = [Card:String]()
     
     private var selectedTheme = (emojis: [""], background: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), cardColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
     
@@ -86,13 +99,14 @@ class ViewController: UIViewController {
     
     // Assign emoji to our cards
     private func emoji(for card: Card) -> String {
+
         // If we don't have an identifier and we still have items in our theme array
-        if emoji[card.identifier] == nil, selectedTheme.emojis.count > 0 {
+        if emoji[card] == nil, selectedTheme.emojis.count > 0 {
             // assign a random emoji to this card identifier
-            emoji[card.identifier] = selectedTheme.emojis.remove(at: selectedTheme.emojis.count.arc4random)
+            emoji[card] = selectedTheme.emojis.remove(at: selectedTheme.emojis.count.arc4random)
         }
         // return identifier or ? if nil
-        return emoji[card.identifier] ?? "?"
+        return emoji[card] ?? "?"
     }
     
     // Resets the game
@@ -105,8 +119,6 @@ class ViewController: UIViewController {
         currentGameScore = game.currentScore
         // update the theme
         updateTheme()
-        // update the view to reflect all of these changes
-        updateViewFromModel()
     }
     
     // Resets all variables pertaining to a new theme
